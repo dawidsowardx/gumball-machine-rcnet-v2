@@ -38,18 +38,19 @@ mod gumball_machine {
                 .divisibility(DIVISIBILITY_NONE)
                 .metadata(metadata! {
                     init {
-                        "name" => "admin badge".to_owned(), locked;
+                        "name" => vec![flavor.to_owned(), "admin badge".to_owned()].join(" "), locked;
+                        "description" => "Admin badge for Sandbox Gumball Machine".to_owned(), locked;
                         "dapp_definitions" => vec![GlobalAddress::from(account.address())], locked;
                     }
                 })
-                .mint_initial_supply(1);
+                .mint_initial_supply(10);
 
             // create a new Gumball resource, with a fixed quantity of 100
             let gumballs_resource_manager: ResourceManager =
                 ResourceBuilder::new_fungible(OwnerRole::None)
                     .metadata(metadata! {
                         init {
-                            "name" => "Gumball".to_owned(), locked;
+                            "name" => vec![flavor.to_owned(), "Gumball".to_owned()].join(" "), locked;
                             "tags" => vec!["gumball".to_owned(), flavor.to_owned(), "sandbox".to_owned(), "testing".to_owned()], locked;
                             "symbol" => flavor.to_owned(), locked;
                             "info_url" => Url("https://www.radixdlt.com".to_owned()), locked;
